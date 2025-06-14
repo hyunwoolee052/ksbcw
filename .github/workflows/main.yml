@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-python@v5
+          with:
+            python-version: "3.x"
+        - uses: pre-commit/action@v3.0.1
+
+  tests:
+    runs-on: ubuntu-latest, windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+            - "3.9"
+            - "3.11"
+            - "3.13"
+    name: Check Python ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # only needed if using setuptools-scm
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
+
+      - name: Download uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Test package
+        run: uv run pytest

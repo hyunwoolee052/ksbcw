@@ -1,0 +1,5 @@
+on:
+  workflow_call:
+    outputs:
+      run-tests:
+        value: ${{ jobs.change-detection.outputs.run-tests  || false  }}
