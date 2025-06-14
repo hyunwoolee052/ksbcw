@@ -45,6 +45,8 @@ fonts-conda-forge         1                             0    conda-forge
 fonttools                 4.58.2          py313hb4c8b1a_0    conda-forge
 fqdn                      1.5.1              pyhd8ed1ab_1    conda-forge
 freetype                  2.13.3               h57928b3_1    conda-forge
+geographiclib             2.0                pyhd8ed1ab_1    conda-forge
+geopy                     2.4.1              pyhd8ed1ab_2    conda-forge
 graphite2                 1.3.13            h63175ca_1003    conda-forge
 h11                       0.16.0             pyhd8ed1ab_0    conda-forge
 h2                        4.2.0              pyhd8ed1ab_0    conda-forge
