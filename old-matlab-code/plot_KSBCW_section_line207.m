@@ -1,4 +1,4 @@
-clc; close all;clear 
+clc; close all;clear
 %% 파일 불러오기
 load Temperature.mat % 수온 (섭씨)
 % load Salt.mat % 염분 (psu)
@@ -6,10 +6,10 @@ load Temperature.mat % 수온 (섭씨)
 %% 트릭
 A = T; % 수온
 clearvars T
-% 
+%
 % A = S; % 염분
 % clearvars S
-% 
+%
 % A = DO; % 용존산소량
 % clearvars DO
 
@@ -26,7 +26,7 @@ day = B(:,6);
 data = B(:,7); % 수온, 염분, 용존산소량 등
 data_qc = B(:,8);
 %% 정점, 깊이, 행렬의 크기
-station_num = unique(station); % 
+station_num = unique(station); %
 depth_lev = unique(depth);
 vert_temp = nan(length(depth_lev),480);
 vert208 = nan(length(depth_lev),480*length(station_num));
@@ -58,7 +58,7 @@ end
 for n=1:length(station_num)
     for i=1:length(depth_lev) % 185
         for j=1:12 % 12개월
-            for k=1:40 % 1980-2019년 
+            for k=1:40 % 1980-2019년
                 if ~isnan(data(cruiseline==208&station==station_num(n)&year==(1979+k)&month==j&depth==depth_lev(i)&qc))
                         vert208(i,(j+12*(k-1)+480*(n-1)))=unique(data(cruiseline==208&station==station_num(n)&year==(1979+k)...
                             &month==j&depth==depth_lev(i)&qc));
@@ -126,7 +126,7 @@ for j=1:length(station_num)
 
             F = griddedInterpolant(i_nan,v208_i_interp1_mod(i,i_nan),"spline");
             v208_i_interp(i,1:492) = F(1:492);
-   end    
+   end
 
 % v208_01_interp = squeeze(v208_01_interp(:,1:2:end));
 
@@ -229,7 +229,7 @@ title('102 정선 수온 평균 ( \circC) 1980 - 2019','FontSize',20,'FontWeight
 %% plot vertical section std
 std102=squeeze(std(vert208_re,0,2,'omitnan'));
 figure(2)
-contourf(cumsum(d),1:depth_len,std102,0:0.1:8,'LineStyle','none') % 수온 표준편차 
+contourf(cumsum(d),1:depth_len,std102,0:0.1:8,'LineStyle','none') % 수온 표준편차
 % contourf(cumsum(d),1:depth_len,std102,'LineStyle','none') %염분 표준편차
 % contourf(cumsum(d),1:depth_len,std102,'LineStyle','none') %용존산소량 표준편차
 
@@ -247,14 +247,14 @@ clim([0 8])
 caxis([0 8])
 title("102 정선 수온 표준편차 ( \circC) 1980 - 2019",'FontSize',20,'FontWeight','bold')
 % print('std102T','-depsc','-tiff')
-% 
+%
 % colormap("parula")
 % colorbar('Ticks',[0 0.5 1.0 1.5 2],'TickLabels',{'0','0.5','1.0','1.5','2'})
 % clim([0 2])
 % caxis=([0 2])
 % title("102 정선 염분 표준편차 ( psu) 1980 - 2019",'FontSize',20,'FontWeight','bold')
 % print('std102S','-depsc','-tiff')
-% 
+%
 % colormap("parula")
 % colorbar
 % clim([0 1])
@@ -283,8 +283,3 @@ title("102 정선 수온 표준편차 ( \circC) 1980 - 2019",'FontSize',20,'Font
 
 
 %% plot number of QC==3
-
-
-
-
-

@@ -4,13 +4,13 @@
 - [ ] Convert old matlab code into python3 code
 
 ## Medium Priority
-- [ ] 
+- [ ]
 
 ## Low Priority
-- [ ] 
+- [ ]
 
 ---
 
-**Legend:**  
-- [ ] = Incomplete  
+**Legend:**
+- [ ] = Incomplete
 - [x] = Complete
